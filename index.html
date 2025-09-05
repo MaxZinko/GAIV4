@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GAI V4: Inspiring Innovation, Upholding Ethics</title>
+  <meta name="description" content="Scientists from Ukraine, Poland and Czech will conduct quantitative and qualitative research on preferences and ethical awareness of students about generative artificial intelligence." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --vf-cyan: #03BFD7;     /* офіційний колір Visegrad Fund */
+      --ai-purple:#7B61FF;     /* AI-акцент */
+      --text:#111;
+      --muted:#666666;         /* з офіційних рекомендацій */
+      --bg:#ffffff;
+      --surface:#f7f9fb;
+      --border:#e6eef3;
+      --link:#03BFD7;
+      --shadow: 0 10px 30px rgba(3,191,215,.15);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --maxw: 1200px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      padding-top: 120px; /* Space for fixed header + social bar */
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background: var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- Social Bar --- */
+    .social-bar{
+      position: fixed; top:0; left:0; right:0; z-index:10000;
+      background: #03bfd7;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .social-bar-inner{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+    }
+    .social-bar a{
+      color: white;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .social-bar a:hover{
+      background: rgba(255,255,255,0.15);
+    }
+    .social-bar svg{
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+    @media (max-width: 768px){
+      .social-bar-inner{
+        gap: 8px;
+      }
+      .social-bar a{
+        padding: 5px 8px;
+        font-size: 12px;
+      }
+    }
+
+    /* --- Header & Nav --- */
+    header{
+      position: fixed; top:40px; left:0; right:0; z-index:9999;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      max-width: var(--maxw);
+      margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 20px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit;
+    }
+    .brand-mark{
+      max-height:60px; 
+      object-fit: cover;
+      border: none;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg); } }
+
+    .brand-title{ font-weight:700; letter-spacing:.2px; }
+    nav ul{ list-style:none; display:flex; gap:16px; padding:0; margin:0; }
+    nav a{
+      text-decoration:none; color:#222; padding:10px 12px; border-radius:10px;
+    }
+    nav a:hover, nav a:focus-visible{
+      background: var(--surface);
+      outline:none;
+    }
+
+    .cta{
+      background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple));
+      color:white; border:none; border-radius:12px;
+      padding:10px 16px; font-weight:600; cursor:pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+    }
+    .cta:hover, .cta:focus-visible{ 
+      background: linear-gradient(135deg, #02A6BE, #6B51E6);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 35px rgba(3,191,215,.25);
+      outline:none; 
+    }
+
+    /* mobile menu */
+    .menu-btn{ display:none; background:none; border:none; font-size:28px; }
+    @media (max-width:900px){
+      nav ul{ display:none; position:absolute; top:64px; right:16px; background:white; border:1px solid var(--border); border-radius:12px; box-shadow: var(--shadow); padding:8px; }
+      nav ul.open{ display:flex; flex-direction:column; }
+      .menu-btn{ display:block; }
+    }
+
+    /* --- Hero --- */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background: linear-gradient(135deg, #f0f4f7, #e8eef3);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-inner{
+      max-width:var(--maxw);
+      margin:0 auto; padding:80px 20px 70px;
+      display:grid; grid-template-columns: 1.1fr 0.9fr; gap:40px; align-items:center;
+    }
+    @media (max-width: 900px){
+      .hero-inner{ grid-template-columns:1fr; padding:64px 18px 50px; }
+    }
+    .hero h1{
+      font-size: clamp(28px, 4vw, 48px);
+      line-height:1.15; margin:0 0 14px;
+    }
+    .hero p.lead{ color:var(--muted); font-size: clamp(16px, 2.2vw, 20px); margin:0 0 24px; }
+    .hero .actions{ display:flex; gap:12px; flex-wrap:wrap; }
+    .ghost{
+      background: transparent; border:1.5px solid var(--vf-cyan); color:#0a0a0a; padding:10px 16px; border-radius:12px; font-weight:600; cursor:pointer;
+    }
+    .ghost:hover, .ghost:focus-visible{ background: rgba(3,191,215,.08); outline:none; }
+
+    /* Neural mesh illustration */
+    .neural{
+      position:relative; width:100%; height:450px; border-radius: var(--radius);
+      background: radial-gradient(120% 100% at 0% 0%, rgba(3,191,215,.10), transparent 70%),
+                  radial-gradient(120% 100% at 100% 100%, rgba(123,97,255,.10), transparent 70%);
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .neural svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.9; }
+    .neural .badge{
+      position:absolute; bottom:12px; right:12px; background: rgba(255,255,255,.85);
+      border:1px solid var(--border); border-radius: 999px; padding:6px 10px; font-size:12px;
+      display:flex; align-items:center; gap:8px;
+    }
+
+    /* --- Sections --- */
+    section{ padding:70px 20px; }
+    .wrap{ max-width: var(--maxw); margin:0 auto; }
+    h2{ font-size: clamp(22px, 3vw, 34px); margin:0 0 14px; }
+    p.section-lead{ color:var(--muted); margin:0 0 28px; }
+
+    .cards{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      grid-column: span 4;
+      background: white; border:1px solid var(--border); border-radius: var(--radius);
+      padding:18px; box-shadow: var(--shadow);
+    }
+    .card h3{ margin: 8px 0 6px; font-size:18px; }
+    .card p{ color:var(--muted); margin:0; }
+    .pill{
+      display:inline-block; font-size:12px; padding:6px 10px; border-radius:999px;
+      background: rgba(3,191,215,.12); border:1px solid rgba(3,191,215,.25); margin-bottom:8px; font-weight:600;
+    }
+    @media (max-width:1000px){
+      .card{ grid-column: span 6; }
+    }
+    @media (max-width:700px){
+      .card{ grid-column: span 12; }
+    }
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--border);
+      background: linear-gradient(180deg, #fff, #f9fcfe);
+      padding:26px 20px;
+    }
+    .foot-inner{ max-width:var(--maxw); margin:0 auto; display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+
+    /* Links */
+    a{ color: var(--link); }
+    a:focus-visible{ outline: 3px solid rgba(3,191,215,.45); outline-offset:2px; border-radius:8px; }
+
+    /* Reduce motion preference */
+    @media (prefers-reduced-motion: reduce){
+      /* No animations to disable for regular image */
+    }
+  </style>
+</head>
+<body>
+<!-- SVG Symbol Definitions -->
+<svg style="display: none;">
+  <defs>
+    <symbol id="shape-facebook" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </symbol>
+    <symbol id="shape-linkedin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </symbol>
+    <symbol id="shape-instagram" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </symbol>
+    <symbol id="shape-twitter" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </symbol>
+    <symbol id="shape-youtube" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </symbol>
+  </defs>
+</svg>
+<div class="social-bar">
+  <div class="social-bar-inner">
+    <a href="https://www.facebook.com/visegradfund/" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg class="shape shape-facebook">
+        <use xlink:href="#shape-facebook"></use>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/international-visegrad-fund/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg class="shape shape-linkedin">
+        <use xlink:href="#shape-linkedin"></use>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/visegradfund/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg class="shape shape-instagram">
+        <use xlink:href="#shape-instagram"></use>
+      </svg>
+    </a>
+    <a href="https://x.com/#!/visegradfund" target="_blank" rel="noopener" aria-label="X (Twitter)">
+      <svg class="shape shape-twitter">
+        <use xlink:href="#shape-twitter"></use>
+      </svg>
+    </a>
+    <a href="https://www.youtube.com/channel/UCjmIvvOFAXHdTJaLTD4-HTA" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg class="shape shape-youtube">
+        <use xlink:href="#shape-youtube"></use>
+      </svg>
+    </a>
+  </div>
+</div>
+<header>
+  <div class="nav">
+    <a class="brand" href="#home" aria-label="До головної">
+      <img class="brand-mark" src="top_logo.png" alt="GAI V4 Logo" />
+      <div class="brand-title">GAI V4+IIUE</div>
+    </a>
+    <nav aria-label="Головна навігація">
+      <button class="menu-btn" aria-label="Меню" aria-expanded="false">☰</button>
+      <ul id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact" class="cta">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="home" class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>GAI V4: Inspiring Innovation, Upholding Ethics</h1>
+      <p class="lead">Scientists from Ukraine, Poland and Czech will conduct quantitative and qualitative research on preferences and ethical awareness of students about generative artificial intelligence (GAI). Research findings will be used to develop training materials and ethical hints considering regional details.</p>
+      <div class="actions">
+        <a href="#about"><button class="cta">Learn More</button></a>
+        <a href="https://www.visegradfund.org/" target="_blank" rel="noopener"><button class="ghost">Visit Visegrad Fund</button></a>
+      </div>
+    </div>
+
+    <div class="neural" aria-label="AI head silhouette with Visegrad Fund branding">
+      <!-- Local image instead of SVG -->
+      <img src="logo.png" alt="AI head silhouette with Visegrad Fund branding" style="width: 100%; height: 100%; object-fit: contain; border-radius: var(--radius);" />
+      <div class="badge">Project funded by International Visegrad Fund</div>
+    </div>
+  </div>
+</main>
+
+<section id="about">
+  <div class="wrap">
+     <div style="padding: 24px; background: white;">
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div style="text-align: center; padding: 20px;">
+          <div style="width: 60px; height: 60px; margin: 0 auto 12px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="color: white;">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6"/>
+              <path d="m21 12-6-3 6-3"/>
+              <path d="m3 12 6 3-6 3"/>
+              <path d="m21 21-3-6 3-6"/>
+              <path d="m3 3 3 6-3 6"/>
+            </svg>
+          </div>
+          <h4>AI research</h4>
+          <p style="color: var(--muted); font-size: 14px;">Advanced research in artificial intelligence applications and ethical frameworks</p>
+        </div>
+        
+        <div style="text-align: center; padding: 20px;">
+          <div style="width: 60px; height: 60px; margin: 0 auto 12px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="color: white;">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <h4>Educational resources</h4>
+          <p style="color: var(--muted); font-size: 14px;">Development of comprehensive educational materials and training programs</p>
+        </div>
+        
+        <div style="text-align: center; padding: 20px;">
+          <div style="width: 60px; height: 60px; margin: 0 auto 12px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="color: white;">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h4>Community engagement</h4>
+          <p style="color: var(--muted); font-size: 14px;">Building strong partnerships and engaging diverse communities</p>
+        </div>
+        
+        <div style="text-align: center; padding: 20px;">
+          <div style="width: 60px; height: 60px; margin: 0 auto 12px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="color: white;">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h4>Global impact</h4>
+          <p style="color: var(--muted); font-size: 14px;">Creating solutions with worldwide reach and sustainable impact</p>
+        </div>
+      </div>
+    </div>   
+
+    <h2>Funding</h2>
+    <div style="margin-bottom: 60px;">
+      <article>
+        <div style="text-align: center; margin-bottom: 24px;">
+          <img src="top_logo.png" alt="International Visegrad Fund Logo" style="max-height: 200px; object-fit: contain;" />
+        </div>
+        <h3>International Visegrad Fund</h3>
+        <p>This project is funded under the Visegrad+ Grant Program of the International Visegrad Fund for 2025.</p>
+        <p style="margin-top: 12px;"><a href="https://www.visegradfund.org/" target="_blank" rel="noopener" class="cta" style="display: inline-block; text-decoration: none;">Visit Visegrad Fund</a></p>
+      </article>
+    </div>
+    
+    <h2>About the Project</h2>
+    <p class="section-lead">GAI V4: Inspiring Innovation, Upholding Ethics (GAIV4+IIUE) is funded under the Visegrad+ Grant Program of the International Visegrad Fund for 2025.</p>
+
+    <div class="cards">
+      <article class="card">
+        <span class="pill">Project ID</span>
+        <h3>22520010</h3>
+        <p>GAI V4: Inspiring Innovation, Upholding Ethics (GAIV4+IIUE)</p>
+      </article>
+      <article class="card">
+        <span class="pill">Focus Area</span>
+        <h3>Innovation & Research</h3>
+        <p>Entrepreneurship, Innovation and Research, focusing on innovation, new technologies and scientific research on regional and cross-sectoral levels.</p>
+      </article>
+      <article class="card">
+        <span class="pill">Coordinator</span>
+        <h3>Prof. Veronika Karkovska</h3>
+        <p>Dr. Sc. (Public Administration), Professor, Department of Administrative and Financial Management</p>
+      </article>
+    </div>
+
+    <div style="margin-top: 40px; padding: 24px; background: white; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);">
+      <h3>Applicant Organization</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 16px;">
+        <div>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <img src="Nulp_logo_ukr.png" alt="Lviv Polytechnic National University Logo" style="max-height: 250px; object-fit: contain;" />
+          </div>
+          <h4>Національний університет "Львівська політехніка"</h4>
+          <p><strong>English:</strong> Lviv Polytechnic National University<br>
+          <strong>Department:</strong> Administrative and Financial Management<br>
+          <strong>Address:</strong> 12 Bandery St., Lviv, 79013, Ukraine<br>
+          <strong>Phone:</strong> +38(032) 258 27 58</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="activities">
+  <div class="wrap">
+    <h2>Activities</h2>
+    <p class="section-lead">Key milestones and activities throughout the project timeline</p>
+    
+    <div style="max-width: var(--maxw); margin: 40px auto;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        
+        <!-- Timeline item 1 - Completed -->
+        <div style="background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple));"></div>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin: 0 auto 12px; box-shadow: var(--shadow);">
+              <div style="text-align: center; font-size: 11px; line-height: 1.1;">
+                <div>MAR</div>
+                <div style="font-size: 16px;">15</div>
+              </div>
+            </div>
+            <div style="display: inline-block; background: rgba(3,191,215,.12); color: var(--vf-cyan); padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid rgba(3,191,215,.25);">Completed</div>
+          </div>
+          <h4 style="margin: 0 0 8px; font-size: 18px; font-weight: 600; text-align: center; color: var(--text);">Kick-off meeting</h4>
+          <p style="margin: 0; color: var(--muted); font-size: 14px; text-align: center; line-height: 1.4;">Project initiation and team alignment session</p>
+        </div>
+        
+        <!-- Timeline item 2 - In Progress -->
+        <div style="background: white; border: 2px solid var(--vf-cyan); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple));"></div>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin: 0 auto 12px; box-shadow: var(--shadow);">
+              <div style="text-align: center; font-size: 11px; line-height: 1.1;">
+                <div>JUL</div>
+                <div style="font-size: 16px;">22</div>
+              </div>
+            </div>
+            <div style="display: inline-block; background: linear-gradient(135deg, var(--vf-cyan), var(--ai-purple)); color: white; padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 600;">In Progress</div>
+          </div>
+          <h4 style="margin: 0 0 8px; font-size: 18px; font-weight: 600; text-align: center; color: var(--text);">AI Workshop</h4>
+          <p style="margin: 0; color: var(--muted); font-size: 14px; text-align: center; line-height: 1.4;">Educational workshop on AI ethics and applications</p>
+        </div>
+        
+        <!-- Timeline item 3 - Upcoming -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: 0 4px 12px rgba(230, 238, 243, 0.3); position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--border);"></div>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <div style="width: 60px; height: 60px; background: white; border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--muted); font-weight: 600; margin: 0 auto 12px;">
+              <div style="text-align: center; font-size: 11px; line-height: 1.1;">
+                <div>OCT</div>
+                <div style="font-size: 16px;">5</div>
+              </div>
+            </div>
+            <div style="display: inline-block; background: var(--border); color: var(--muted); padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 600;">Upcoming</div>
+          </div>
+          <h4 style="margin: 0 0 8px; font-size: 18px; font-weight: 600; text-align: center; color: var(--text);">Conference</h4>
+          <p style="margin: 0; color: var(--muted); font-size: 14px; text-align: center; line-height: 1.4;">International conference presenting research findings</p>
+        </div>
+        
+        <!-- Timeline item 4 - Planned -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: 0 4px 12px rgba(230, 238, 243, 0.3); position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--border);"></div>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <div style="width: 60px; height: 60px; background: white; border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--muted); font-weight: 600; margin: 0 auto 12px;">
+              <div style="text-align: center; font-size: 11px; line-height: 1.1;">
+                <div>FEB</div>
+                <div style="font-size: 16px;">18</div>
+              </div>
+            </div>
+            <div style="display: inline-block; background: var(--border); color: var(--muted); padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 600;">Planned</div>
+          </div>
+          <h4 style="margin: 0 0 8px; font-size: 18px; font-weight: 600; text-align: center; color: var(--text);">Publication</h4>
+          <p style="margin: 0; color: var(--muted); font-size: 14px; text-align: center; line-height: 1.4;">Final research publication and project completion</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <h2>Results</h2>
+    <p class="section-lead">Research findings and project outcomes will be published here as they become available.</p>
+    
+    <div class="cards">
+      <article class="card">
+        <span class="pill">Coming Soon</span>
+        <h3>Research Publications</h3>
+        <p>Peer-reviewed papers and research articles on AI ethics and student preferences will be published throughout the project duration.</p>
+      </article>
+      <article class="card">
+        <span class="pill">Coming Soon</span>
+        <h3>Training Materials</h3>
+        <p>Educational resources and training materials developed based on research findings will be made available for download.</p>
+      </article>
+      <article class="card">
+        <span class="pill">Coming Soon</span>
+        <h3>Data Insights</h3>
+        <p>Key findings from quantitative and qualitative research on generative AI preferences across Ukraine, Poland, and Czech Republic.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="team" style="background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <h2>Project Team from Lviv Polytechnic National University</h2>
+    <p class="section-lead">Department of Administrative and Financial Management (Institute of Administration, Public Management and Professional Development)</p>
+
+    <div class="cards">
+      <article class="card">
+        <span class="pill">Project Coordinator</span>
+        <h3>Prof. Veronika Karkovska</h3>
+        <p>Dr. Sc. (Public Administration), Professor, Department of Administrative and Financial Management</p>
+        <p style="margin-top: 10px;"><a href="https://wiki.lpnu.ua/wiki/%D0%9A%D0%B0%D1%80%D0%BA%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B0_%D0%92%D0%B5%D1%80%D0%BE%D0%BD%D1%96%D0%BA%D0%B0_%D0%AF%D1%80%D0%BE%D1%81%D0%BB%D0%B0%D0%B2%D1%96%D0%B2%D0%BD%D0%B0" target="_blank" rel="noopener">View Profile</a></p>
+      </article>
+      <article class="card">
+        <span class="pill">Team Member</span>
+        <h3>Mariia Holovchak</h3>
+        <p>PhD, Assistant, Department of Administrative and Financial Management</p>
+      </article>
+      <article class="card">
+        <span class="pill">Contact</span>
+        <h3>Get in Touch</h3>
+        <p><strong>Email:</strong> <a href="mailto:veronika.y.karkovska@lpnu.ua">veronika.y.karkovska@lpnu.ua</a><br>
+        <strong>Phone:</strong> +380983109586<br>
+        <strong>Address:</strong> 12 Bandery St., Lviv, 79013, Ukraine</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="wrap">
+    <h2>Project Partners</h2>
+    <p class="section-lead">International collaboration with leading universities in Poland and Czech Republic, supported by the International Visegrad Fund.</p>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+      <article class="card">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <img src="univ_pol_logo.jpg" alt="University of Information Technology and Management in Rzeszów Logo" style="max-height: 120px; object-fit: contain;" />
+        </div>
+        <h3>University of Information Technology and Management in Rzeszów</h3>
+        <p><strong>Polish:</strong> Wyższa Szkoła Informatyki i Zarządzania w Rzeszowie<br>
+        <strong>Department:</strong> Katedra Kognitywistyki i Modelowania Matematycznego<br>
+        <strong>Address:</strong> mjr. Henryka Sucharskiego 2, Rzeszów, 32-225, Poland<br>
+        <strong>Contact:</strong> <a href="mailto:iberezovska@wsiz.edu.pl">iberezovska@wsiz.edu.pl</a><br>
+        <strong>Website:</strong> <a href="https://wsiz.edu.pl" target="_blank" rel="noopener">wsiz.edu.pl</a></p>
+        <p style="margin-top: 12px; font-size: 14px;">The Department of Cognitive Science and Mathematical Modelling has prepared guides on AI use in science and education. UITM has implemented over 150 EU-funded projects worth over 200 million PLN.</p>
+      </article>
+      
+      <article class="card">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <img src="charles-university-logo.png" alt="Charles University Logo" style="max-height: 120px; object-fit: contain;" />
+        </div>
+        <h3>Charles University</h3>
+        <p><strong>Czech:</strong> Univerzita Karlova<br>
+        <strong>Department:</strong> Katedra didaktiky fyziky<br>
+        <strong>Address:</strong> Ovocný trh 5, Prague, 116 36, Czechia<br>
+        <strong>Contact:</strong> <a href="mailto:marie.snetinova@matfyz.cuni.cz">marie.snetinova@matfyz.cuni.cz</a><br>
+        <strong>Website:</strong> <a href="https://www.cuni.cz" target="_blank" rel="noopener">www.cuni.cz</a></p>
+        <p style="margin-top: 12px; font-size: 14px;">The Department of Physics Education focuses on innovative teaching methods and explores how AI can enhance education, with expertise in teacher training and professional development.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="news" style="background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <h2>News & Updates</h2>
+    <p class="section-lead">Stay informed about project developments, events, and announcements.</p>
+    
+    <div class="cards">
+      <article class="card">
+        <span class="pill">Latest</span>
+        <h3>Project Launch Announcement</h3>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 8px;">March 15, 2025</p>
+        <p>GAI V4: Inspiring Innovation, Upholding Ethics project officially launched with international collaboration between Ukraine, Poland, and Czech Republic.</p>
+      </article>
+      <article class="card">
+        <span class="pill">Upcoming</span>
+        <h3>AI Ethics Workshop</h3>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 8px;">July 22, 2025</p>
+        <p>Educational workshop focusing on artificial intelligence ethics and applications in academic settings. Registration details will be announced soon.</p>
+      </article>
+      <article class="card">
+        <span class="pill">Planned</span>
+        <h3>Research Conference</h3>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 8px;">October 5, 2025</p>
+        <p>International conference presenting preliminary research findings and fostering collaboration between academic institutions.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <h2>Gallery</h2>
+    <p class="section-lead">Visual documentation of project activities, events, and collaborative meetings.</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; text-align: center; color: var(--muted);">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 16px; color: var(--vf-cyan);">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="9" cy="9" r="2"/>
+          <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+        </svg>
+        <h4>Project Launch</h4>
+        <p style="font-size: 14px;">Photos from the project kick-off meeting and team introduction sessions will be added here.</p>
+      </div>
+      
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; text-align: center; color: var(--muted);">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 16px; color: var(--vf-cyan);">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="9" cy="9" r="2"/>
+          <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+        </svg>
+        <h4>Workshops & Events</h4>
+        <p style="font-size: 14px;">Visual documentation of educational workshops, seminars, and collaborative activities.</p>
+      </div>
+      
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; text-align: center; color: var(--muted);">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 16px; color: var(--vf-cyan);">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="9" cy="9" r="2"/>
+          <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+        </svg>
+        <h4>Research Activities</h4>
+        <p style="font-size: 14px;">Behind-the-scenes photos of research activities and data collection processes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="section-lead">Get in touch with our project team for collaborations, partnerships, or inquiries about generative AI research.</p>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+      <div class="card">
+        <h3>Project Coordinator</h3>
+        <p><strong>Dr. Sc. (Public Administration), Professor</strong><br>
+        Veronika Karkovska<br>
+        Department of Administrative and Financial Management<br>
+        Lviv Polytechnic National University</p>
+        <p style="margin-top: 16px;">
+        <strong>Email:</strong> <a href="mailto:veronika.y.karkovska@lpnu.ua">veronika.y.karkovska@lpnu.ua</a><br>
+        <strong>Phone:</strong> +380983109586<br>
+        <strong>Address:</strong> 12 Bandery St., Lviv, 79013, Ukraine</p>
+      </div>
+      
+      <div class="card">
+        <h3>Follow Visegrad Fund</h3>
+        <p>Stay connected with the International Visegrad Fund through social media:</p>
+        <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
+          <a href="https://www.facebook.com/visegradfund/" target="_blank" rel="noopener" style="padding: 8px 12px; background: #1877f2; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">Facebook</a>
+          <a href="https://www.linkedin.com/company/international-visegrad-fund/" target="_blank" rel="noopener" style="padding: 8px 12px; background: #0077b5; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">LinkedIn</a>
+          <a href="https://www.instagram.com/visegradfund/" target="_blank" rel="noopener" style="padding: 8px 12px; background: #e4405f; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">Instagram</a>
+          <a href="https://x.com/#!/visegradfund" target="_blank" rel="noopener" style="padding: 8px 12px; background: #000; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">X (Twitter)</a>
+          <a href="https://www.youtube.com/channel/UCjmIvvOFAXHdTJaLTD4-HTA" target="_blank" rel="noopener" style="padding: 8px 12px; background: #ff0000; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <small style="color:#888">© 2025 GAI V4: Inspiring Innovation, Upholding Ethics</small>
+  </div>
+</footer>
+</body>
+</html>
